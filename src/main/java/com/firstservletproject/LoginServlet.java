@@ -22,13 +22,14 @@ import java.util.regex.Pattern;
 
 public class LoginServlet extends HttpServlet
 {
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
         String user = req.getParameter("user");
         String pwd = req.getParameter("pwd");
+
         String userRegex = "^[A-Z]{1}+[a-z]{2,}";
         String pwdRegex = "^.*(?=.*[A-Z])(?=.*[0-9])([a-z])(?=.*[@#$%^&+=])(?=.{8,}).*$";
+        
         String userId  = getServletConfig().getInitParameter("user");
         String password = getServletConfig().getInitParameter("password");
 
