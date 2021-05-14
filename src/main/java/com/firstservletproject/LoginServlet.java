@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 @WebServlet(
         description = "Login Servlet",
         urlPatterns = {"/LoginServlet"},
-        initParams ={
+        initParams = {
                 @WebInitParam(name="user",value = "Prajakta"),
                 @WebInitParam(name="password", value= "14Praju@")
         }
@@ -28,11 +28,10 @@ public class LoginServlet extends HttpServlet
         String user = req.getParameter("user");
         String pwd = req.getParameter("pwd");
         String userRegex = "^[A-Z]{1}+[a-z]{2,}";
-        String pwdRegex = "^.*(?=.*[A-Z])(?=.*[0-9])([a-z])(?=.*[@#$%^&+=])(?=.{8,}).*$";
         String userId  = getServletConfig().getInitParameter("user");
         String password = getServletConfig().getInitParameter("password");
 
-        if(Pattern.matches(pwdRegex, pwd) && Pattern.matches(userRegex, user))
+        if (Pattern.matches(userRegex, user))
         {
             req.setAttribute("user",user);
             req.getRequestDispatcher("LoginServlet.jsp").forward(req,response);
@@ -41,7 +40,7 @@ public class LoginServlet extends HttpServlet
         {
             RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/login.html");
             PrintWriter out = response.getWriter();
-            out.println("<font color=red> Either username or password is incorrect.</font>");
+            out.println("<font color=red>user name is incorrect.</font>");
             requestDispatcher.include(req,response);
         }
     }
