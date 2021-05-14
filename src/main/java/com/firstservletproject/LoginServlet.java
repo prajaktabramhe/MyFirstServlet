@@ -28,17 +28,20 @@ public class LoginServlet extends HttpServlet
         String user = req.getParameter("user");
         String pwd = req.getParameter("pwd");
         String userRegex = "^[A-Z]{1}+[a-z]{2,}";
-
+        String pwdRegex = "^.*(?=.*[A-Z])(?=.*[0-9])([a-z])(?=.*[@#$%^&+=])(?=.{8,}).*$";
         String userId  = getServletConfig().getInitParameter("user");
         String password = getServletConfig().getInitParameter("password");
-        if (Pattern.matches(userRegex, user))
+
+        if(Pattern.matches(pwdRegex, pwd) && Pattern.matches(userRegex, user))
         {
             req.setAttribute("user",user);
-            req.getRequestDispatcher("LoginSuccess.jsp").forward(req,response);
-        } else {
+            req.getRequestDispatcher("LoginServlet.jsp").forward(req,response);
+        }
+        else
+        {
             RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/login.html");
             PrintWriter out = response.getWriter();
-            out.println("<font color=red> user name is incorrect.</font>");
+            out.println("<font color=red> Either username or password is incorrect.</font>");
             requestDispatcher.include(req,response);
         }
     }
