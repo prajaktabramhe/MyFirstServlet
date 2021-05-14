@@ -27,9 +27,9 @@ public class LoginServlet extends HttpServlet
         String user = req.getParameter("user");
         String pwd = req.getParameter("pwd");
 
-        String userRegex = "^[A-Z]{1}+[a-z]{2,}";
-        String pwdRegex = "^.*(?=.*[A-Z])(?=.*[0-9])([a-z])(?=.*[@#$%^&+=])(?=.{8,}).*$";
-        
+        String userRegex = "^[A-Z]{1}+[a-z]{2,}"; // pattern for valid name
+        String pwdRegex = "^.*(?=.*[A-Z])(?=.*[0-9])([a-z])(?=.*[@#$%^&+=])(?=.{8,}).*$"; //pattern for valid passwprd
+
         String userId  = getServletConfig().getInitParameter("user");
         String password = getServletConfig().getInitParameter("password");
 
